@@ -17,7 +17,7 @@
     <header class="topbar">
       <div>
         <p class="eyebrow">FitMeal Planner</p>
-        <h1>Today's plan</h1>
+        <h1 data-i18n="todayPlan">Today's plan</h1>
       </div>
       <button class="icon-button" id="resetApp" aria-label="Reset app data" title="Reset app data">
         <span aria-hidden="true">R</span>
@@ -27,30 +27,50 @@
     <section class="view active" id="dashboardView" aria-labelledby="dashboardTitle">
       <div class="hero-panel">
         <div>
-          <p class="eyebrow">Daily target</p>
+          <p class="eyebrow" data-i18n="dailyTarget">Daily target</p>
           <h2 id="calorieTarget">Set profile</h2>
         </div>
         <div class="macro-ring">
           <span id="proteinTarget">0g</span>
-          <small>protein</small>
+          <small data-i18n="protein">protein</small>
         </div>
       </div>
 
+      <section class="settings-strip" aria-label="App settings">
+        <label>
+          <span data-i18n="language">Language</span>
+          <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="es">Espanol</option>
+            <option value="fr">Francais</option>
+            <option value="pt">Portugues</option>
+            <option value="ar">Arabic</option>
+          </select>
+        </label>
+        <label>
+          <span data-i18n="units">Units</span>
+          <select id="unitSelect">
+            <option value="metric" data-i18n="metric">Metric</option>
+            <option value="imperial" data-i18n="imperial">Imperial</option>
+          </select>
+        </label>
+      </section>
+
       <div class="install-card" id="installCard">
         <div>
-          <strong>Install on Android</strong>
-          <p>Add FitMeal Planner to your home screen for app-style access.</p>
+          <strong data-i18n="installTitle">Install on Android</strong>
+          <p data-i18n="installBody">Add FitMeal Planner to your home screen for app-style access.</p>
         </div>
-        <button class="secondary" id="installApp" type="button">Install</button>
+        <button class="secondary" id="installApp" type="button" data-i18n="install">Install</button>
       </div>
 
       <div class="grid-two">
         <article class="stat-card">
-          <span class="stat-label">Current</span>
+          <span class="stat-label" data-i18n="current">Current</span>
           <strong id="currentWeight">-- kg</strong>
         </article>
         <article class="stat-card">
-          <span class="stat-label">Goal</span>
+          <span class="stat-label" data-i18n="goal">Goal</span>
           <strong id="goalWeight">-- kg</strong>
         </article>
       </div>
@@ -58,73 +78,98 @@
       <section class="panel" aria-labelledby="dashboardTitle">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Setup</p>
-            <h2 id="dashboardTitle">Your profile</h2>
+            <p class="eyebrow" data-i18n="setup">Setup</p>
+            <h2 id="dashboardTitle" data-i18n="yourProfile">Your profile</h2>
           </div>
           <span class="pill" id="profileStatus">Not saved</span>
         </div>
 
         <form id="profileForm" class="form-grid">
+          <div class="photo-field wide">
+            <div class="photo-preview" id="photoPreview" aria-label="Profile photo preview">
+              <span id="photoInitials">FM</span>
+            </div>
+            <label class="photo-upload">
+              <span data-i18n="profilePicture">Profile picture</span>
+              <input type="file" id="photo" accept="image/*">
+            </label>
+          </div>
+          <label class="wide">
+            <span data-i18n="fullName">Full name</span>
+            <input type="text" id="fullName" placeholder="Your name">
+          </label>
           <label>
-            Age
+            <span data-i18n="email">Email</span>
+            <input type="email" id="email" placeholder="you@example.com">
+          </label>
+          <label>
+            <span data-i18n="phone">Phone</span>
+            <input type="tel" id="phone" placeholder="+27 00 000 0000">
+          </label>
+          <label>
+            <span data-i18n="age">Age</span>
             <input type="number" id="age" min="13" max="100" placeholder="28" required>
           </label>
           <label>
-            Gender
+            <span data-i18n="gender">Gender</span>
             <select id="gender">
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-              <option value="other">Other</option>
+              <option value="female" data-i18n="female">Female</option>
+              <option value="male" data-i18n="male">Male</option>
+              <option value="other" data-i18n="other">Other</option>
             </select>
           </label>
           <label>
-            Height
+            <span data-i18n="height">Height</span>
             <input type="number" id="height" min="120" max="230" placeholder="170" required>
-            <span class="unit">cm</span>
+            <span class="unit" id="heightUnit">cm</span>
           </label>
           <label>
-            Weight
+            <span data-i18n="weight">Weight</span>
             <input type="number" id="weight" min="35" max="250" step="0.1" placeholder="78" required>
-            <span class="unit">kg</span>
+            <span class="unit" id="weightUnit">kg</span>
           </label>
           <label>
-            Goal weight
+            <span data-i18n="goalWeightLabel">Goal weight</span>
             <input type="number" id="goal" min="35" max="250" step="0.1" placeholder="70" required>
-            <span class="unit">kg</span>
+            <span class="unit" id="goalUnit">kg</span>
           </label>
           <label>
-            Workouts / week
+            <span data-i18n="workouts">Workouts / week</span>
             <input type="number" id="workouts" min="0" max="14" placeholder="4" required>
           </label>
           <label>
-            Activity level
+            <span data-i18n="activity">Activity level</span>
             <select id="activity">
-              <option value="1.2">Light</option>
-              <option value="1.375">Moderate</option>
-              <option value="1.55">Active</option>
-              <option value="1.725">Very active</option>
+              <option value="1.2" data-i18n="light">Light</option>
+              <option value="1.375" data-i18n="moderate">Moderate</option>
+              <option value="1.55" data-i18n="active">Active</option>
+              <option value="1.725" data-i18n="veryActive">Very active</option>
             </select>
           </label>
           <label>
-            Diet preference
+            <span data-i18n="diet">Diet preference</span>
             <select id="diet">
-              <option value="balanced">Balanced</option>
-              <option value="vegetarian">Vegetarian</option>
-              <option value="high-protein">High protein</option>
+              <option value="balanced" data-i18n="balanced">Balanced</option>
+              <option value="vegetarian" data-i18n="vegetarian">Vegetarian</option>
+              <option value="high-protein" data-i18n="highProtein">High protein</option>
             </select>
           </label>
           <label class="wide">
-            Allergies or avoids
+            <span data-i18n="allergies">Allergies or avoids</span>
             <input type="text" id="allergies" placeholder="peanuts, dairy">
           </label>
+          <label class="wide">
+            <span data-i18n="personalNote">Personal note</span>
+            <textarea id="personalNote" rows="3" placeholder="Example: I train after work and prefer quick dinners."></textarea>
+          </label>
           <label>
-            Meals / day
+            <span data-i18n="mealsPerDay">Meals / day</span>
             <select id="mealsPerDay">
-              <option value="3">3 meals</option>
-              <option value="4">3 meals + snack</option>
+              <option value="3" data-i18n="threeMeals">3 meals</option>
+              <option value="4" data-i18n="fourMeals">3 meals + snack</option>
             </select>
           </label>
-          <button type="submit" class="primary wide">Save profile</button>
+          <button type="submit" class="primary wide" data-i18n="saveProfile">Save profile</button>
         </form>
       </section>
     </section>
@@ -133,10 +178,10 @@
       <section class="panel">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Fuel</p>
-            <h2 id="mealsTitle">Daily meals</h2>
+            <p class="eyebrow" data-i18n="fuel">Fuel</p>
+            <h2 id="mealsTitle" data-i18n="dailyMeals">Daily meals</h2>
           </div>
-          <button class="secondary" id="generatePlan">Generate</button>
+          <button class="secondary" id="generatePlan" data-i18n="generate">Generate</button>
         </div>
         <div class="meal-summary" id="mealSummary">
           Save your profile, then generate a meal plan.
@@ -149,8 +194,8 @@
       <section class="panel">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Shop</p>
-            <h2 id="groceryTitle">Grocery list</h2>
+            <p class="eyebrow" data-i18n="shop">Shop</p>
+            <h2 id="groceryTitle" data-i18n="groceryListTitle">Grocery list</h2>
           </div>
           <span class="pill" id="groceryCount">0 items</span>
         </div>
@@ -164,21 +209,21 @@
       <section class="panel">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Track</p>
-            <h2 id="progressTitle">Progress</h2>
+            <p class="eyebrow" data-i18n="track">Track</p>
+            <h2 id="progressTitle" data-i18n="progress">Progress</h2>
           </div>
           <span class="pill" id="workoutBadge">Not logged</span>
         </div>
         <form id="progressForm" class="form-grid">
           <label>
-            Today's weight
+            <span data-i18n="todaysWeight">Today's weight</span>
             <input type="number" id="progressWeight" min="35" max="250" step="0.1" placeholder="Current kg">
           </label>
           <label class="checkbox-row">
             <input type="checkbox" id="workoutDone">
-            Workout completed
+            <span data-i18n="workoutCompleted">Workout completed</span>
           </label>
-          <button type="submit" class="primary wide">Save progress</button>
+          <button type="submit" class="primary wide" data-i18n="saveProgress">Save progress</button>
         </form>
         <div class="progress-line">
           <div id="progressFill"></div>
@@ -191,19 +236,19 @@
   <nav class="tabbar" aria-label="Primary navigation">
     <button class="tab active" data-view="dashboardView" aria-label="Dashboard">
       <span>D</span>
-      Dashboard
+      <span data-i18n="dashboardTab">Dashboard</span>
     </button>
     <button class="tab" data-view="mealsView" aria-label="Meals">
       <span>M</span>
-      Meals
+      <span data-i18n="mealsTab">Meals</span>
     </button>
     <button class="tab" data-view="groceryView" aria-label="Grocery">
       <span>G</span>
-      Grocery
+      <span data-i18n="groceryTab">Grocery</span>
     </button>
     <button class="tab" data-view="progressView" aria-label="Progress">
       <span>P</span>
-      Progress
+      <span data-i18n="progressTab">Progress</span>
     </button>
   </nav>
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = "fitmeal-planner-v1";
+const CACHE_NAME = "fitmeal-planner-v3";
 const APP_ASSETS = [
   "./",
   "./index.html",
