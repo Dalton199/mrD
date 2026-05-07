@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2f7d55">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="FitMeal Planner">
+  <title>FitMeal Planner</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">FitMeal Planner</p>
+        <h1>Today's plan</h1>
+      </div>
+      <button class="icon-button" id="resetApp" aria-label="Reset app data" title="Reset app data">
+        <span aria-hidden="true">R</span>
+      </button>
+    </header>
+
+    <section class="view active" id="dashboardView" aria-labelledby="dashboardTitle">
+      <div class="hero-panel">
+        <div>
+          <p class="eyebrow">Daily target</p>
+          <h2 id="calorieTarget">Set profile</h2>
+        </div>
+        <div class="macro-ring">
+          <span id="proteinTarget">0g</span>
+          <small>protein</small>
+        </div>
+      </div>
+
+      <div class="install-card" id="installCard">
+        <div>
+          <strong>Install on Android</strong>
+          <p>Add FitMeal Planner to your home screen for app-style access.</p>
+        </div>
+        <button class="secondary" id="installApp" type="button">Install</button>
+      </div>
+
+      <div class="grid-two">
+        <article class="stat-card">
+          <span class="stat-label">Current</span>
+          <strong id="currentWeight">-- kg</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Goal</span>
+          <strong id="goalWeight">-- kg</strong>
+        </article>
+      </div>
+
+      <section class="panel" aria-labelledby="dashboardTitle">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Setup</p>
+            <h2 id="dashboardTitle">Your profile</h2>
+          </div>
+          <span class="pill" id="profileStatus">Not saved</span>
+        </div>
+
+        <form id="profileForm" class="form-grid">
+          <label>
+            Age
+            <input type="number" id="age" min="13" max="100" placeholder="28" required>
+          </label>
+          <label>
+            Gender
+            <select id="gender">
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>
+            Height
+            <input type="number" id="height" min="120" max="230" placeholder="170" required>
+            <span class="unit">cm</span>
+          </label>
+          <label>
+            Weight
+            <input type="number" id="weight" min="35" max="250" step="0.1" placeholder="78" required>
+            <span class="unit">kg</span>
+          </label>
+          <label>
+            Goal weight
+            <input type="number" id="goal" min="35" max="250" step="0.1" placeholder="70" required>
+            <span class="unit">kg</span>
+          </label>
+          <label>
+            Workouts / week
+            <input type="number" id="workouts" min="0" max="14" placeholder="4" required>
+          </label>
+          <label>
+            Activity level
+            <select id="activity">
+              <option value="1.2">Light</option>
+              <option value="1.375">Moderate</option>
+              <option value="1.55">Active</option>
+              <option value="1.725">Very active</option>
+            </select>
+          </label>
+          <label>
+            Diet preference
+            <select id="diet">
+              <option value="balanced">Balanced</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="high-protein">High protein</option>
+            </select>
+          </label>
+          <label class="wide">
+            Allergies or avoids
+            <input type="text" id="allergies" placeholder="peanuts, dairy">
+          </label>
+          <label>
+            Meals / day
+            <select id="mealsPerDay">
+              <option value="3">3 meals</option>
+              <option value="4">3 meals + snack</option>
+            </select>
+          </label>
+          <button type="submit" class="primary wide">Save profile</button>
+        </form>
+      </section>
+    </section>
+
+    <section class="view" id="mealsView" aria-labelledby="mealsTitle">
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Fuel</p>
+            <h2 id="mealsTitle">Daily meals</h2>
+          </div>
+          <button class="secondary" id="generatePlan">Generate</button>
+        </div>
+        <div class="meal-summary" id="mealSummary">
+          Save your profile, then generate a meal plan.
+        </div>
+        <div class="meal-list" id="mealList"></div>
+      </section>
+    </section>
+
+    <section class="view" id="groceryView" aria-labelledby="groceryTitle">
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Shop</p>
+            <h2 id="groceryTitle">Grocery list</h2>
+          </div>
+          <span class="pill" id="groceryCount">0 items</span>
+        </div>
+        <ul class="grocery-list" id="groceryList">
+          <li>Generate a meal plan to build your list.</li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="view" id="progressView" aria-labelledby="progressTitle">
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Track</p>
+            <h2 id="progressTitle">Progress</h2>
+          </div>
+          <span class="pill" id="workoutBadge">Not logged</span>
+        </div>
+        <form id="progressForm" class="form-grid">
+          <label>
+            Today's weight
+            <input type="number" id="progressWeight" min="35" max="250" step="0.1" placeholder="Current kg">
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="workoutDone">
+            Workout completed
+          </label>
+          <button type="submit" class="primary wide">Save progress</button>
+        </form>
+        <div class="progress-line">
+          <div id="progressFill"></div>
+        </div>
+        <p class="helper" id="progressText">Add your profile to see progress toward your goal.</p>
+      </section>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Primary navigation">
+    <button class="tab active" data-view="dashboardView" aria-label="Dashboard">
+      <span>D</span>
+      Dashboard
+    </button>
+    <button class="tab" data-view="mealsView" aria-label="Meals">
+      <span>M</span>
+      Meals
+    </button>
+    <button class="tab" data-view="groceryView" aria-label="Grocery">
+      <span>G</span>
+      Grocery
+    </button>
+    <button class="tab" data-view="progressView" aria-label="Progress">
+      <span>P</span>
+      Progress
+    </button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
